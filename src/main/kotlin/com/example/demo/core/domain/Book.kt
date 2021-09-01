@@ -5,6 +5,4 @@ class Book (
     val title: String,
     val year: Int,
     val publisher: String
-) {
-
-}
+)

@@ -1,13 +1,12 @@
 package com.example.demo.core.usecase
 
-import com.example.demo.core.domain.Book
 import com.example.demo.core.port.`in`.SaveBookPortIn
+import com.example.demo.core.port.out.SaveBookPortOut
+import com.example.demo.core.usecase.mapper.toOutput
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
-class SaveBookUseCase : SaveBookPortIn{
-    override fun execute(book: Book): String {
-        return UUID.randomUUID().toString()
-    }
+class SaveBookUseCase(private val saveBookPortOut: SaveBookPortOut) : SaveBookPortIn{
+    override fun execute(book: SaveBookPortIn.Input): SaveBookPortIn.Output =
+        saveBookPortOut.execute(book).toOutput()
 }
