@@ -5,5 +5,12 @@ data class BookRequestDTO (val title: String,
                           val year: Int,
                           val publisher: String)
 
-class BookResponseDTO (val id: String,
+data class BookResponseDTO (val id: String,
                        val title: String)
+
+data class GetBookResponseDTO (val id: String,
+                               val title: String,
+                               val author: String,
+                               val year: Int,
+                               val publisher: String,
+                               val createdAt: String)
