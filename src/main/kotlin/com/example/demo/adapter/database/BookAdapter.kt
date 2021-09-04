@@ -8,11 +8,13 @@ import com.example.demo.core.port.`in`.SaveBookPortIn
 import com.example.demo.core.port.out.GetAllBooksPortOut
 import com.example.demo.core.port.out.GetBookByIdPortOut
 import com.example.demo.core.port.out.SaveBookPortOut
+import mu.KLogging
 import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
 class SaveBookAdapter(private val bookRepository: BookRepository) : SaveBookPortOut {
+    companion object: KLogging()
     override fun execute(book: SaveBookPortIn.Input): String {
         val bookEntity = BookEntity(
             UUID.randomUUID().toString(),
@@ -21,6 +23,7 @@ class SaveBookAdapter(private val bookRepository: BookRepository) : SaveBookPort
             book.publisher,
             book.author
         )
+        logger.info("Saving book: $bookEntity")
         return bookRepository.save(bookEntity).id
     }
 }
