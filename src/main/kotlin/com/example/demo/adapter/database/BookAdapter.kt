@@ -5,6 +5,7 @@ import com.example.demo.adapter.database.mapper.toOutput
 import com.example.demo.adapter.database.repository.BookRepository
 import com.example.demo.core.port.`in`.GetBookByIdPortIn
 import com.example.demo.core.port.`in`.SaveBookPortIn
+import com.example.demo.core.port.out.GetAllBooksPortOut
 import com.example.demo.core.port.out.GetBookByIdPortOut
 import com.example.demo.core.port.out.SaveBookPortOut
 import org.springframework.stereotype.Component
@@ -26,7 +27,12 @@ class SaveBookAdapter(private val bookRepository: BookRepository) : SaveBookPort
 
 @Component
 class GetBookAdapter(private val bookRepository: BookRepository) : GetBookByIdPortOut {
-    override fun execute(id: String): GetBookByIdPortIn.Output =
-        bookRepository.findById(id).get().toOutput()
+    override fun execute(id: String): Optional<GetBookByIdPortIn.Output> =
+        bookRepository.findById(id).map { it.toOutput() }
+}
 
+@Component
+class GetAllBooksAdapter(private val bookRepository: BookRepository) : GetAllBooksPortOut {
+    override fun execute(): List<GetBookByIdPortIn.Output> =
+        bookRepository.findAll().map(BookEntity::toOutput);
 }
