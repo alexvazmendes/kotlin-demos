@@ -9,6 +9,7 @@ import com.example.demo.core.port.out.GetAllBooksPortOut
 import com.example.demo.core.port.out.GetBookByIdPortOut
 import com.example.demo.core.port.out.SaveBookPortOut
 import mu.KLogging
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -32,6 +33,11 @@ class SaveBookAdapter(private val bookRepository: BookRepository) : SaveBookPort
 class GetBookAdapter(private val bookRepository: BookRepository) : GetBookByIdPortOut {
     override fun execute(id: String): Optional<GetBookByIdPortIn.Output> =
         bookRepository.findById(id).map { it.toOutput() }
+
+    fun alternativeWay(id: String): GetBookByIdPortIn.Output? {
+        return bookRepository.findByIdOrNull(id)
+            ?.let { it.toOutput() }
+    }
 }
 
 @Component
