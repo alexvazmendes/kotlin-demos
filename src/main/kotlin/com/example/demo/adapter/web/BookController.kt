@@ -5,7 +5,6 @@ import com.example.demo.adapter.web.dto.BookResponseDTO
 import com.example.demo.adapter.web.dto.GetBookResponseDTO
 import com.example.demo.adapter.web.mapper.toInput
 import com.example.demo.adapter.web.mapper.toResponseDto
-import com.example.demo.core.exception.BookNotFoundException
 import com.example.demo.core.port.`in`.GetAllBooksPortIn
 import com.example.demo.core.port.`in`.GetBookByIdPortIn
 import com.example.demo.core.port.`in`.SaveBookPortIn
@@ -13,8 +12,6 @@ import mu.KLogging
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.*
-import javax.websocket.server.PathParam
 
 @RestController
 @RequestMapping("/books")

@@ -36,12 +36,12 @@ class GetBookAdapter(private val bookRepository: BookRepository) : GetBookByIdPo
 
     fun alternativeWay(id: String): GetBookByIdPortIn.Output? {
         return bookRepository.findByIdOrNull(id)
-            ?.let { it.toOutput() }
+            ?.toOutput()
     }
 }
 
 @Component
 class GetAllBooksAdapter(private val bookRepository: BookRepository) : GetAllBooksPortOut {
     override fun execute(): List<GetBookByIdPortIn.Output> =
-        bookRepository.findAll().map(BookEntity::toOutput);
+        bookRepository.findAll().map(BookEntity::toOutput)
 }
