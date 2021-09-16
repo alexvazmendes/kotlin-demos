@@ -70,4 +70,4 @@ Obs.: Ao enviar um identificador no header "Transaction-Id", o mesmo será exibi
 
 - Em caso de nenhum livro cadastrado será retornado 204 (No Content)
 
-# Arquitetura
+## Arquitetura
