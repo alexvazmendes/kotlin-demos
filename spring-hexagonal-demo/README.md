@@ -3,6 +3,9 @@
 Essa aplicação é um exemplo de arquitetura hexagonal.
 A ideia é apenas salvar e buscar livros.
 
+* [Métodos HTTP](#métodos-http)
+* [Arquitetura](#arquitetura)
+
 ## Métodos HTTP
 Obs.: Ao enviar um identificador no header "Transaction-Id", o mesmo será exibido nos logs (caso não seja enviado será gerado um UUID aleatório)
 ```
