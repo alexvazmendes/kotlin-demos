@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "305b99c0-bb4c-47f2-aefc-68ea2454db49",
+		"name": "Book Kotlin Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SAVE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Transaction-Id",
+						"value": "1234-1234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Titulo 1\",\n    \"author\": \"Autor 1\",\n    \"publisher\": \"Editora 123\",\n    \"year\": 1998\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Transaction-Id",
+						"value": "4321-4321",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/books/179f1af6-8f15-4ad9-a0a0-21b41e2c232e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"179f1af6-8f15-4ad9-a0a0-21b41e2c232e"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Transaction-Id",
+						"value": "5678-9876",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/books/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
