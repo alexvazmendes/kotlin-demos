@@ -74,3 +74,8 @@ Obs.: Ao enviar um identificador no header "Transaction-Id", o mesmo será exibi
 - Em caso de nenhum livro cadastrado será retornado 204 (No Content)
 
 ## Arquitetura
+
+- A arquitetura da aplicação é um exemplo de arquitetura hexagonal, usando a estrutura de pacotes para segmentar os módulos e suas responsabilidades
+- São dois módulos principais:
+** Adapter: Contém as integrações com o "mundo externo". No caso dessa aplicação são dois adaptadores - web e persistência
+** Core: Contém as regras de negócio da aplicação. É dividido em 3 pacotes: domain (pela simplicidade da aplicação, o pacote de domínio possui apenas uma entidade "Livro"), ports (possuem as interfaces de entrada e saída) e o usecases (serviços com responsabilidade única que executam as regras de negócio da aplicação).
