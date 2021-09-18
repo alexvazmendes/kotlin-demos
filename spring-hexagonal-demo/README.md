@@ -77,5 +77,16 @@ Obs.: Ao enviar um identificador no header "Transaction-Id", o mesmo será exibi
 
 - A arquitetura da aplicação é um exemplo de arquitetura hexagonal, usando a estrutura de pacotes para segmentar os módulos e suas responsabilidades
 - São dois módulos principais:
-** Adapter: Contém as integrações com o "mundo externo". No caso dessa aplicação são dois adaptadores - web e persistência
-** Core: Contém as regras de negócio da aplicação. É dividido em 3 pacotes: domain (pela simplicidade da aplicação, o pacote de domínio possui apenas uma entidade "Livro"), ports (possuem as interfaces de entrada e saída) e o usecases (serviços com responsabilidade única que executam as regras de negócio da aplicação).
+    - Adapter: Contém as integrações com o "mundo externo". No caso dessa aplicação são dois adaptadores - web e persistência
+    - Core: Contém as regras de negócio da aplicação. É dividido em 3 pacotes: domain (pela simplicidade da aplicação, o pacote de domínio possui apenas uma entidade "Livro"), ports (possuem as interfaces de entrada e saída) e o usecases (serviços com responsabilidade única que executam as regras de negócio da aplicação).
+
+- A ideia é que as classes/interfaces fiquem divididas de acordo com sua responsabilidade.
+    - DTOs, Controllers e qualquer tipo de configuração que envolva a conexão com o cliente da aplicação ficam no adapter web
+    - Entidades de banco de dados, repositórios ficam no adapter de persistência
+- As exceções são espalhadas de acordo com o seu uso. Exceções que indiquem alguma regra de negócio devem ficar no core, exceções que tratem de algum problema de integração (como uma exceção SQL) ficam nos adaptadores. Exceções de um adaptador não devem ser tratadas por outros adaptadores (deve ser mantido o isolamento entre os módulos).
+- DTOs, entidades de bancos de dados, e outros tipos de objetos construídos para comunicação externa ficam no adaptador e jamais devem ser usados na camada de negócio da aplicação.
+- Segue abaixo um esquema da arquitetura usada:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/26612433/133889444-375e937b-811b-4783-addc-79874d004771.png">
+</p>
